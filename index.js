@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
-
-const tokenVK = get('TOKEN').asString();
+const env = require('env-var');
+const tokenVK = env.get('TOKEN').asString();
 
 const vk = new VK({
     token: tokenVK
