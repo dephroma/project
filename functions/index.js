@@ -46,4 +46,6 @@ vk.updates.on('message_new', async (context) => {
     } else {
         await context.send('Извините, я не понимаю этот вопрос. Попробуйте спросить что-то другое.');
     }
+
+    console.log('asdasd')
 });
