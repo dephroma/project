@@ -1,9 +1,9 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "functions/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node functions/index.js"
   },
   "keywords": [],
   "author": "",
