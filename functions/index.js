@@ -43,6 +43,8 @@ vk.updates.on('message_new', async (context) => {
         await context.send('У меня всё отлично, спасибо! А как у вас?');
     } else if (message.includes('пока')) {
         await context.send('До свидания! Хорошего дня!');
+    }    else if (message.includes('превед')) {
+            await context.send('До свидания! ты крыса!');
     } else if (message.includes('пока')) {
         await context.send('До свидания! Хорошего дня!');
     }  else if (message.includes('https://vk.com/market/product/kalendula-226855768-9802063')) {
