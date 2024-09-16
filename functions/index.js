@@ -43,8 +43,14 @@ vk.updates.on('message_new', async (context) => {
         await context.send('У меня всё отлично, спасибо! А как у вас?');
     } else if (message.includes('пока')) {
         await context.send('До свидания! Хорошего дня!');
-    } else {
+    } else if (message.includes('пока')) {
+        await context.send('До свидания! Хорошего дня!');
+    }  else if (message.includes('https://vk.com/market/product/kalendula-226855768-9802063')) {
+        await context.send('Отличный выбор. У нас соыне, насыщенные туры, с хорошими гидами не заскучаете. Полное пописание можешь глянуть тут - https://vk.com/@-226855768-nuzhnaya-vam-statya Расчитаем стоимость?');
+    } 
+    else {
         await context.send('Извините, я не понимаю этот вопрос. Попробуйте спросить что-то другое.');
+        
     }
 
     console.log('asdasd')
