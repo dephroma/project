@@ -50,7 +50,7 @@ vk.updates.on('message_new', async (context) => {
         else if (message === 'даты'|| message ==='расписание' || message ==='дату' || message ==='дата' ) 
             {await context.send('Даты туров вы можете посмотреть здесь - https://vk.com/dageagletour?z=photo-28295020_457239608%2Falbum-28295020_251015298');} 
         
-        else if (message === 'https://vk.com/market/product/kalendula-226855768-9802063'|| message ==='https://vk.com/market-28295020?screen=group&w=product-28295020_9868551%2Fquery' ) 
+        else if (message === 'https://vk.com/market/product/kalendula-226855768-9802063'|| message ==='Меня заинтересовал этот товар' ) 
             {await context.send('Отличный выбор, хотите получить полную программу тура?');}   
         else if (message === 'да') {
             const text = `
