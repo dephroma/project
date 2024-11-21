@@ -37,12 +37,7 @@ exports.handler = async (event, context) => {
 vk.updates.on('message_new', async (context) => {
     const message = context.text.toLowerCase();
 
-    if (message.includes('привет')) {
-        await context.send('Привет! Как я могу помочь вам сегодня?');
-        await sendMainMenu(context);
-    } 
-    
-    else if (message.includes('как дела')) 
+    if (message.includes('как дела')) 
         { await context.send('У меня всё отлично, спасибо! А как у вас?');
             await sendMainMenu(context);
         } 
