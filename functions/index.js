@@ -43,7 +43,9 @@ vk.updates.on('message_new', async (context) => {
     } 
     
     else if (message.includes('как дела')) 
-        { await context.send('У меня всё отлично, спасибо! А как у вас?');} 
+        { await context.send('У меня всё отлично, спасибо! А как у вас?');
+            await sendMainMenu(context);
+        } 
     if (message === 'привет' || message ==='здравствуйте' || message ==='начать' || message ==='приветствую' || message ==='салам' || message ==='салам алейкум') {
         await context.send('Здравствуйте! Пока наш менеджер спешить ответить, я смогу помочь вам с поиском нужной информации. Напишите "туры", "даты", "цены/оплата" или "информация" для получения данных.');}
         else if (message === 'туры') 
@@ -72,11 +74,6 @@ vk.updates.on('message_new', async (context) => {
             await context.send(text);
             await sendMainMenu(context);
           
-            // Отправляем дополнительное сообщение через 5 секунд
-            setTimeout(async () => {
-              const additionalText = `Если у вас есть вопросы или вам нужно дополнительное обслуживание, пожалуйста, обращайтесь к администратору в сообществе.`;
-              await context.send(additionalText);
-            }, 5000);
                     
             // Отправляем еще одно дополнительное сообщение через 15 секунд
             setTimeout(async () => {
