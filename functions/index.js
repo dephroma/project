@@ -38,7 +38,7 @@ vk.updates.on('message_new', async (context) => {
     const message = context.text.toLowerCase();
 
     if (message.includes('как дела')) 
-        { await context.send('У меня всё отл123ично,asdasd спаasфвафывфвфваdasdсибо! А как у вас?');
+        { await context.send('У меня всё отл123ично,asdasd сфывфвыпаasфвафывфвфваdasdсибо! А как у вас?');
             await sendMainMenu(context);
         } 
     if (message === 'привет' || message ==='здравствуйте' || message ==='начать' || message ==='приветствую' || message ==='салам' || message ==='салам алейкум') {
