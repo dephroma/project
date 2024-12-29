@@ -11,7 +11,19 @@ exports.handler = async (event, context) => {
     const { type, group_id, secret } = body;
 
     // Проверка секретного ключа и ID группы
+    if (secret !== process.env.VK_SECRET || group_id !== parseInt(process.env.VK_GROUP_ID, 10)) {
+        return {
+            statusCode: 403,
+            body: 'Forbidden',
+        };
+    }
 
+    if (type === 'confirmation') {
+        return {
+            statusCode: 200,
+            body: process.env.VK_CONFIRMATION,
+        };
+    }
 
     // Обработка событий, например, новое сообщение
     await vk.updates.handleWebhookUpdate(body);
