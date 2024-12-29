@@ -3,7 +3,7 @@ const { VK, Keyboard } = require('vk-io');
 
 // Вставь сюда свой токен группы
 const vk = new VK({
-    token: 'YOUR_VK_GROUP_TOKEN'
+    token: 'vk1.a.lrxnAbBaxKjIJxGbA3HqLknqSHAKg6bX1bsM3ZcMsCtEjUhq0ftLhDMP4y2D8JUDj95RyLeHXG3GY4BZBKFTV2MHynl-SeAySTkNQnyH-gPMCa-LLVknDUZjcfl_H3NYff2EJjcRtRKgUzW_dT2cQJh4WzReRzp2lhAn7A4VJreAcHDxVT-jatfKIm1NvG5NBRcSpHa2ThRqF_d4wb8r4g'
 });
 
 // Запуск бота
