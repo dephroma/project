@@ -68,7 +68,7 @@ vk.updates.on('message_new', async (context) => {
 
 // Обработка нажатий на кнопки
 vk.updates.on('message_new', async (context) => {
-    const text = context.text;
+    const text = context.text.trim(); // Убираем лишние пробелы для точного сравнения
     console.log('Нажата кнопка:', text);
 
     switch (text) {
