@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { VK, Keyboard } = require('vk-io');
+const he = require('he'); // Подключение библиотеки для декодирования HTML-символов
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
@@ -35,7 +36,7 @@ exports.handler = async (event, context) => {
 };
 
 vk.updates.on('message_new', async (context) => {
-    const message = context.text.toLowerCase();
+    const message = he.decode(context.text.trim()).toLowerCase(); // Декодирование и приведение к нижнему регистру
     console.log('Получено сообщение:', message);
 
     if (['привет', 'старт', 'начало'].includes(message)) {
@@ -68,7 +69,7 @@ vk.updates.on('message_new', async (context) => {
 
 // Обработка нажатий на кнопки
 vk.updates.on('message_new', async (context) => {
-    const text = context.text.trim(); // Убираем лишние пробелы для точного сравнения
+    const text = he.decode(context.text.trim()); // Убираем лишние пробелы и декодируем HTML-символы
     console.log('Нажата кнопка:', text);
 
     switch (text) {
