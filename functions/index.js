@@ -14,7 +14,7 @@ async function sendWelcomeMessage(context) {
         keyboard: Keyboard.keyboard([
             [
                 Keyboard.textButton({
-                    label: '"&#128220; Каталог и бронирование"',
+                    label: '&#128220; Каталог и бронирование',
                     color: Keyboard.POSITIVE_COLOR,
                     payload: JSON.stringify({ button: 'catalog' })
                 })
