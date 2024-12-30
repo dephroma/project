@@ -34,14 +34,17 @@ exports.handler = async (event, context) => {
     };
 };
 
+// Обработка сообщений и кнопок
 vk.updates.on('message_new', async (context) => {
-    const message = context.text.trim().toLowerCase(); // Декодирование и приведение к нижнему регистру
-    console.log('Получено сообщение:', message);
+    const text = context.text.trim();
 
-    if (['привет', 'старт', 'начало'].includes(message)) {
+    console.log('Получено сообщение:', text);
+
+    // Приветственное сообщение
+    if (['привет', 'старт', 'начало'].includes(text.toLowerCase())) {
         console.log('Отправка приветственного сообщения');
         await context.send({
-            message: "Привет, дорогой путешественник!\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже.\nИли напишите ваш вопрос прямо сюда, и я отвечу!",
+            message: "Привет, дорогой путешественник! Я — ваш виртуальный гид. Чем могу помочь?",
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
@@ -64,73 +67,93 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime()
         });
     }
-});
 
-// Обработка нажатий на кнопки
-vk.updates.on('message_new', async (context) => {
-    const text = context.text.trim(); // Убираем лишние пробелы
-    console.log('Нажата кнопка:', text);
+    // Обработка кнопки "Каталог и бронирование"
+    if (text === 'Каталог и бронирование') {
+        console.log('Обработка кнопки "Каталог и бронирование"');
+        await context.send({
+            message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n1. Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n2. Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Экскурсии на 1 день',
+                        color: Keyboard.POSITIVE_COLOR
+                    })
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Многодневные туры',
+                        color: Keyboard.POSITIVE_COLOR
+                    })
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR
+                    })
+                ]
+            ]).oneTime()
+        });
+    }
 
-    switch (text) {
-        case 'Каталог и бронирование':
-            await context.send({
-                message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\nЭкскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\nМногодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.\n\nВыберите подходящий маршрут и нажмите «Забронировать» на карточке товара. После этого я помогу оформить заявку!",
-                keyboard: Keyboard.keyboard([
-                    [
-                        Keyboard.textButton({
-                            label: 'Экскурсии на 1 день',
-                            color: Keyboard.POSITIVE_COLOR
-                        })
-                    ],
-                    [
-                        Keyboard.textButton({
-                            label: 'Многодневные туры',
-                            color: Keyboard.POSITIVE_COLOR
-                        })
-                    ],
-                    [
-                        Keyboard.textButton({
-                            label: 'Назад',
-                            color: Keyboard.PRIMARY_COLOR
-                        })
-                    ]
-                ]).oneTime()
-            });
-            break;
-        case 'Даты и цены':
-            await context.send("Здесь вы найдёте актуальные даты и цены: <ссылка или информация>");
-            break;
-        case 'Частые вопросы':
-            await context.send("Вот ответы на частые вопросы: <ссылка или информация>");
-            break;
-        case 'Назад':
-            await context.send({
-                message: "Привет, дорогой путешественник!\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже.\nИли напишите ваш вопрос прямо сюда, и я отвечу!",
-                keyboard: Keyboard.keyboard([
-                    [
-                        Keyboard.textButton({
-                            label: 'Каталог и бронирование',
-                            color: Keyboard.POSITIVE_COLOR
-                        })
-                    ],
-                    [
-                        Keyboard.textButton({
-                            label: 'Даты и цены',
-                            color: Keyboard.PRIMARY_COLOR
-                        })
-                    ],
-                    [
-                        Keyboard.textButton({
-                            label: 'Частые вопросы',
-                            color: Keyboard.NEGATIVE_COLOR
-                        })
-                    ]
-                ]).oneTime()
-            });
-            break;
-        default:
-            if (!['привет', 'старт', 'начало'].includes(text.toLowerCase())) {
-                await context.send("Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.");
-            }
+    // Обработка кнопки "Назад"
+    if (text === 'Назад') {
+        console.log('Обработка кнопки "Назад"');
+        await context.send({
+            message: "Привет, дорогой путешественник! Я — ваш виртуальный гид. Чем могу помочь?",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Каталог и бронирование',
+                        color: Keyboard.POSITIVE_COLOR
+                    })
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Даты и цены',
+                        color: Keyboard.PRIMARY_COLOR
+                    })
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Частые вопросы',
+                        color: Keyboard.NEGATIVE_COLOR
+                    })
+                ]
+            ]).oneTime()
+        });
+    }
+
+    // Обработка кнопки "Даты и цены"
+    if (text === 'Даты и цены') {
+        console.log('Обработка кнопки "Даты и цены"');
+        await context.send({
+            message: "Здесь вы найдете актуальные даты и цены на наши туры. Пожалуйста, выберите интересующую вас информацию.",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR
+                    })
+                ]
+            ]).oneTime()
+        });
+    }
+
+    // Обработка кнопки "Частые вопросы"
+    if (text === 'Частые вопросы') {
+        console.log('Обработка кнопки "Частые вопросы"');
+        await context.send({
+            message: "Здесь вы найдете ответы на часто задаваемые вопросы. Если у вас есть другие вопросы, не стесняйтесь обращаться!",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR
+                    })
+                ]
+            ]).oneTime()
+        });
     }
 });
+
