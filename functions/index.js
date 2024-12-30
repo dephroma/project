@@ -70,17 +70,16 @@ vk.updates.on('message_new', async (context) => {
 
 // Обработка нажатий на кнопки с использованием payload
 vk.updates.on('message_new', async (context) => {
-    // Декодируем и парсим payload дважды, если нужно
+    // Пытаемся распарсить payload
     let payload;
     try {
         // Декодируем экранированный payload
-        payload = JSON.parse(he.decode(context.payload));
+        payload = JSON.parse(he.decode(context.payload)); // Сначала декодируем
+        console.log('Payload:', payload);
     } catch (e) {
         console.log('Ошибка при парсинге payload:', e);
         return;
     }
-
-    console.log('Payload:', payload);
 
     // Если кнопка "Каталог и бронирование"
     if (payload.button === 'catalog') {
