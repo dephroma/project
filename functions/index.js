@@ -70,10 +70,11 @@ vk.updates.on('message_new', async (context) => {
 
 // Обработка нажатий на кнопки с использованием payload
 vk.updates.on('message_new', async (context) => {
-    // Декодируем и парсим payload
+    // Декодируем и парсим payload дважды, если нужно
     let payload;
     try {
-        payload = JSON.parse(context.payload);
+        // Декодируем экранированный payload
+        payload = JSON.parse(he.decode(context.payload));
     } catch (e) {
         console.log('Ошибка при парсинге payload:', e);
         return;
@@ -155,4 +156,3 @@ vk.updates.on('message_new', async (context) => {
             }
     }
 });
-
