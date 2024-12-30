@@ -48,7 +48,7 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
-                        label: '&#_128522; Каталог и бронирование',
+                        label: '&#128522; Каталог и бронирование',
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
@@ -69,7 +69,7 @@ vk.updates.on('message_new', async (context) => {
     }
 
     // Обработка кнопки "Каталог и бронирование"
-    if (text === '&#_128522; Каталог и бронирование') {
+    if (text === '&#128522; Каталог и бронирование') {
         console.log('Обработка кнопки "Каталог и бронирование"');
         await context.send({
             message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n1. Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n2. Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.",
@@ -104,7 +104,7 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
-                        label: '&#_128522; Каталог и бронирование',
+                        label: '&#128522; Каталог и бронирование',
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
