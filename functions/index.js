@@ -14,7 +14,7 @@ async function sendWelcomeMessage(context) {
         keyboard: Keyboard.keyboard([
             [
                 Keyboard.textButton({
-                    label: '📜 Каталог и бронирование',
+                    label: '"&#128220; Каталог и бронирование"',
                     color: Keyboard.POSITIVE_COLOR,
                     payload: JSON.stringify({ button: 'catalog' })
                 })
@@ -79,7 +79,9 @@ vk.updates.on('message_new', async (context) => {
     let payload;
     try {
         if (context.payload) {
-            payload = JSON.parse(he.decode(context.payload));
+            // Убираем лишние кавычки и экранирование
+            const decodedPayload = he.decode(context.payload);
+            payload = JSON.parse(decodedPayload);
             console.log('Payload:', payload);
         }
     } catch (e) {
