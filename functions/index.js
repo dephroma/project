@@ -45,7 +45,7 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([ 
                 [
                     Keyboard.textButton({
-                        label: '&#128220; Каталог и бронирование',
+                        label: 'D83DDE07; Каталог и бронирование',
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
