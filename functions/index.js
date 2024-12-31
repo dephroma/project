@@ -76,13 +76,13 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
-                        label: 'Экскурсии на 1 день',
+                        label: '\u{1f31f} Экскурсии на 1 день',
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
                 [
                     Keyboard.textButton({
-                        label: 'Многодневные туры',
+                        label: '\u{2728} Многодневные туры',
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
