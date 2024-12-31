@@ -54,7 +54,7 @@ vk.updates.on('message_new', async (context) => {
                 ],
                 [
                     Keyboard.textButton({
-                        label: 'Даты и цены',
+                        label: '\u{1f5d3} Даты и цены',
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
@@ -110,7 +110,7 @@ vk.updates.on('message_new', async (context) => {
                 ],
                 [
                     Keyboard.textButton({
-                        label: 'Даты и цены',
+                        label: '\u{1f5d3} Даты и цены',
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
@@ -125,7 +125,7 @@ vk.updates.on('message_new', async (context) => {
     }
 
     // Обработка кнопки "Даты и цены"
-    if (text === 'Даты и цены') {
+    if (text === '\u{1f5d3} Даты и цены') {
         console.log('Обработка кнопки "Даты и цены"');
         await context.send({
             message: "Здесь вы найдете актуальные даты и цены на наши туры. Пожалуйста, выберите интересующую вас информацию.",
