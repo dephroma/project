@@ -46,13 +46,13 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
-                        label: '\u{1F4D6} Каталог и бронирование',  // 📚
+                        label: '\u{1f4da} Каталог и бронирование',  // 📚
                         color: Keyboard.POSITIVE_COLOR
                     })
                 ],
                 [
                     Keyboard.textButton({
-                        label: '\u{1F4C5} Даты и цены',  // 📅
+                        label: '\u{1f4c5} Даты и цены',  // 📅
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
@@ -96,7 +96,7 @@ vk.updates.on('message_new', async (context) => {
     // Обработка кнопки "Экскурсии на 1 день"
     if (text === '\u{1F31F} Экскурсии на 1 день') {
         await context.send({
-            message: `Выберите вашу экскурсию! \u{1F31F}
+            message: `Выберите вашу экскурсию! 🌟
 
 Мы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.
 
@@ -187,7 +187,7 @@ vk.updates.on('message_new', async (context) => {
                 ],
                 [
                     Keyboard.textButton({
-                        label: '\u{1F4C5} Даты и цены',  // 📅
+                        label: '\u{1f4c5} Даты и цены',  // 📅
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
