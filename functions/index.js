@@ -53,7 +53,7 @@ vk.updates.on('message_new', async (context) => {
                 ],
                 [
                     Keyboard.textButton({
-                        label: '\u{1f4c5} Даты и цены',  // 📅
+                        label: '\u{1f5d3} Даты и цены',  // 📅
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
@@ -94,6 +94,38 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime()
         });
     }
+
+        // Обработка кнопки "Даты и цены"
+    if (text === '\u{1f5d3} Даты и цены') {
+        console.log('Обработка кнопки "Даты и цены"');
+        await context.send({
+            message: "Здесь вы найдете актуальные даты и цены на наши туры. Пожалуйста, выберите интересующую вас информацию.",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+    // Обработка кнопки "Даты и цены"
+    if (text === '\u{1f5d3} Даты и цены') {
+        console.log('Обработка кнопки "Даты и цены"');
+        await context.send({
+            message: "Здесь вы найдете актуальные даты и цены на наши туры. Пожалуйста, выберите интересующую вас информацию.",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+
 
     // Обработка кнопки "Экскурсии на 1 день"
     if (text === '\u{1f31f} Экскурсии на 1 день') {
@@ -189,7 +221,7 @@ vk.updates.on('message_new', async (context) => {
                 ],
                 [
                     Keyboard.textButton({
-                        label: '\u{1f4c5} Даты и цены',  // 📅
+                        label: '\u{1f5d3} Даты и цены',  // 📅
                         color: Keyboard.PRIMARY_COLOR
                     })
                 ],
@@ -201,6 +233,8 @@ vk.updates.on('message_new', async (context) => {
                 ]
             ]).oneTime()
         });
+
+        
     }
 });
 
