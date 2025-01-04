@@ -203,39 +203,9 @@ vk.updates.on('message_new', async (context) => {
         });
     }
 
-    // Обработка действий пользователя с кнопками (выбор экскурсии или возврат)
-    if (payload && payload.action && payload.action.startsWith('choose_')) {
-        const excursionNumber = payload.action.split('_')[1];
-        await context.send(`Вы выбрали экскурсию ${excursionNumber}. Пожалуйста, свяжитесь с нами для бронирования.`);
-    }
 
-    if (payload && payload.action === 'back') {
-        await context.send({
-            message: `Привет, дорогой путешественник!👋 Я — ваш виртуальный гид. Чем могу помочь?`,
-            keyboard: Keyboard.keyboard([
-                [
-                    Keyboard.textButton({
-                        label: '\u{1f4da} Каталог и бронирование',  // 📚
-                        color: Keyboard.POSITIVE_COLOR
-                    })
-                ],
-                [
-                    Keyboard.textButton({
-                        label: '\u{1f5d3} Даты и цены',  // 📅
-                        color: Keyboard.PRIMARY_COLOR
-                    })
-                ],
-                [
-                    Keyboard.textButton({
-                        label: '\u{2753} Частые вопросы',  // ❓
-                        color: Keyboard.NEGATIVE_COLOR
-                    })
-                ]
-            ]).oneTime()
-        });
 
-        
-    }
+ 
 });
 
 
