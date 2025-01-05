@@ -12,10 +12,10 @@ exports.handler = async (event, context) => {
 };
 
 vk.updates.on('message_new', async (context) => {
-    const text = context.text?.trim().toLowerCase(); // Безопасное получение текста и приведение к нижнему регистру
+    const text = context.text.trim().toLowerCase(); // Безопасное получение текста и приведение к нижнему регистру
     console.log('Получено сообщение:', text);
 
-    if (['привет', 'старт', 'начало', 'hi'].includes(text)) { // Сравнение в нижнем регистре
+    if (['привет', 'старт', 'начало', 'hi'].includes(text.toLowerCase())) { // Сравнение в нижнем регистре
         await context.send({
             message: "Привет, дорогой путешественник!\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже. Или напишите ваш вопрос прямо сюда, и я отвечу!",
             keyboard: Keyboard.keyboard([
