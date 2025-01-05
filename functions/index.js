@@ -1,114 +1,161 @@
 require('dotenv').config();
-const { VK, Keyboard, Carousel, CarouselElement } = require('vk-io');
+
+const { VK, Keyboard } = require('vk-io');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
 });
 
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
     const { type, group_id, secret } = body;
 
     // Проверка секретного ключа и ID группы
     if (secret !== process.env.VK_SECRET || group_id !== parseInt(process.env.VK_GROUP_ID, 10)) {
-        return { statusCode: 403, body: 'Forbidden' };
+        return {
+            statusCode: 403,
+            body: 'Forbidden',
+        };
     }
 
     if (type === 'confirmation') {
-        return { statusCode: 200, body: process.env.VK_CONFIRMATION };
+        return {
+            statusCode: 200,
+            body: process.env.VK_CONFIRMATION,
+        };
     }
 
-    // Обработка событий
+    // Обработка событий, например, новое сообщение
     await vk.updates.handleWebhookUpdate(body);
-    return { statusCode: 200, body: 'OK' };
+
+    return {
+        statusCode: 200,
+        body: 'OK',
+    };
 };
 
-// Вспомогательные функции
-const createButton = (label, color, payload = null) => Keyboard.textButton({ label, color, payload });
-const createKeyboard = (buttons) => Keyboard.keyboard(buttons).oneTime();
-
-// Данные карусели
-const excursions = [
-    {
-        title: 'Знакомство с Дагестаном',
-        description: 'Визитная карточка Дагестана. Сюда едем первым делом!',
-        photo_id: 'photo-226855768_457239020',
-        action: 'choose_1'
-    },
-    {
-        title: 'Древний Дербент',
-        description: 'Самый древний город России. Прикоснитесь к античной истории!',
-        photo_id: 'photo-226855768_457239021',
-        action: 'choose_2'
-    },
-    {
-        title: '5 жемчужин Дагестана',
-        description: 'Эти прекрасные места спрятаны в самом сердце Дагестана. Они ждут ваших глаз!',
-        photo_id: 'photo-226855768_457239022',
-        action: 'choose_3'
-    }
-];
-
-const createCarousel = () => {
-    return new Carousel(excursions.map(exc => new CarouselElement({
-        title: exc.title,
-        description: exc.description,
-        photo_id: exc.photo_id,
-        buttons: [
-            createButton('👉выбрать экскурсию✨', Keyboard.POSITIVE_COLOR, JSON.stringify({ action: exc.action })),
-            createButton('↩ Назад', Keyboard.PRIMARY_COLOR, JSON.stringify({ action: 'back' }))
-        ]
-    })));
-};
-
-// Обработка событий VK
+// Обработка сообщений и кнопок
 vk.updates.on('message_new', async (context) => {
-    try {
-        const text = context.text.trim().toLowerCase();
-        const payload = context.message.payload ? JSON.parse(context.message.payload) : null;
+    const text = context.text.trim();
+    console.log('Получено сообщение:', text);
 
-        if (/^(привет|старт|начало)$/.test(text)) {
-            console.log('Срабатывает приветственное сообщение.');
-            await context.send({
-                message: `Привет, дорогой путешественник!👋\\n\\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\\n\\nЧем могу помочь? Выберите опцию в меню ниже или напишите ваш вопрос прямо сюда! 😊`,
-                keyboard: createKeyboard([
-                    [createButton('\\u{1F4DA} Каталог и бронирование', Keyboard.POSITIVE_COLOR)],
-                    [createButton('\\u{1F4C5} Даты и цены', Keyboard.PRIMARY_COLOR)],
-                    [createButton('\\u{2753} Частые вопросы', Keyboard.NEGATIVE_COLOR)]
-                ])
-            });
-        }
-         else if (text === '\u{1F4D6} Каталог и бронирование') {
-            await context.send({
-                message: `Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n\u{1F31F} Экскурсии на 1 день — яркие впечатления за один день.\n\u{2728} Многодневные туры — отдых душой и знакомство с природой.\n\nВыберите маршрут и нажмите «Забронировать»!`,
-                keyboard: createKeyboard([
-                    [createButton('\u{1F31F} Экскурсии на 1 день', Keyboard.POSITIVE_COLOR)],
-                    [createButton('\u{2728} Многодневные туры', Keyboard.POSITIVE_COLOR)],
-                    [createButton('Назад', Keyboard.PRIMARY_COLOR)]
-                ])
-            });
-        } else if (text === '\u{1F31F} Экскурсии на 1 день') {
-            await context.send({
-                message: `Выберите вашу экскурсию! 🌟\n\nМы подготовили маршруты для знакомства с Дагестаном за один день. Откройте экскурсию, чтобы узнать подробности, и нажмите кнопку бронирования!`,
-                keyboard: createKeyboard([[createButton('Назад', Keyboard.PRIMARY_COLOR)]]),
-                attachment: createCarousel()
-            });
-        } else if (payload && payload.action && payload.action.startsWith('choose_')) {
-            const excursionNumber = payload.action.split('_')[1];
-            await context.send(`Вы выбрали экскурсию ${excursionNumber}. Пожалуйста, свяжитесь с нами для бронирования.`);
-        } else if (payload && payload.action === 'back') {
-            await context.send({
-                message: `Привет, дорогой путешественник!👋 Я — ваш виртуальный гид. Чем могу помочь?`,
-                keyboard: createKeyboard([
-                    [createButton('\u{1F4D6} Каталог и бронирование', Keyboard.POSITIVE_COLOR)],
-                    [createButton('\u{1F4C5} Даты и цены', Keyboard.PRIMARY_COLOR)],
-                    [createButton('\u{2753} Частые вопросы', Keyboard.NEGATIVE_COLOR)]
-                ])
-            });
-        }
-    } catch (error) {
-        console.error('Ошибка обработки сообщения:', error);
-        await context.send('Произошла ошибка. Попробуйте снова позже.');
+    // Приветственное сообщение
+    if (['привет', 'старт', 'начало' , 'hi'].includes(text.toLowerCase())) {
+        console.log('Отправка приветственного сообщения');
+        await context.send({
+            message: "Привет, дорогой путешественник!👋\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже. Или напишите ваш вопрос прямо сюда, и я отвечу!😊",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f4dc} Каталог и бронирование', // Добавлен смайлик
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f5d3} Даты и цены',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f4ac} Частые вопросы',
+                        color: Keyboard.NEGATIVE_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+
+    // Обработка кнопки "Каталог и бронирование"
+    if (text === '\u{1f4dc} Каталог и бронирование') {
+        console.log('Обработка кнопки "Каталог и бронирование"');
+        await context.send({
+            message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n🌟 Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n✨ Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.\n\nВыберите подходящий маршрут и нажмите «Забронировать» на карточке товара. После этого я помогу оформить заявку!",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f31f} Экскурсии на 1 день',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '\u{2728} Многодневные туры',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+
+    // Обработка кнопки "Назад"
+    if (text === 'Назад') {
+        console.log('Обработка кнопки "Назад"');
+        await context.send({
+            message: "Привет, дорогой путешественник!👋 Я — ваш виртуальный гид. Чем могу помочь?",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f4dc} Каталог и бронирование', // Добавлен смайлик
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f5d3} Даты и цены',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '\u{1f4ac} Частые вопросы',
+                        color: Keyboard.NEGATIVE_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+
+    // Обработка кнопки "Даты и цены"
+    if (text === '\u{1f5d3} Даты и цены') {
+        console.log('Обработка кнопки "Даты и цены"');
+        await context.send({
+            message: "Здесь вы найдете актуальные даты и цены на наши туры. Пожалуйста, выберите интересующую вас информацию.",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
+
+    // Обработка кнопки "Частые вопросы"
+    if (text === '\u{1f4ac} Частые вопросы') {
+        console.log('Обработка кнопки "Частые вопросы"');
+        await context.send({
+            message: "Здесь вы найдете ответы на часто задаваемые вопросы. Если у вас есть другие вопросы, не стесняйтесь обращаться!",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
     }
 });
+
+
+
