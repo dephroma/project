@@ -95,48 +95,49 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     }
-// Обработка кнопки "Экскурсии на 1 день"
-if (text === '\u{1f31f} Экскурсии на 1 день') {
-    console.log('Обработка кнопки "Экскурсии на 1 день"');
-    await context.send({
-        message: `Выберите вашу экскурсию! 🌟
+
+    // Обработка кнопки "Экскурсии на 1 день"
+    if (text === '🌟 Экскурсии на 1 день') {
+        console.log('Обработка кнопки "Экскурсии на 1 день"');
+        await context.send({
+            message: `Выберите вашу экскурсию! 🌟
 
 Мы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.
 
 Откройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).
 
 👇 Вот наш каталог экскурсий:`,
-        keyboard: Keyboard.keyboard([
-            [
-                Keyboard.textButton({
-                    label: ' Знакомство с Дагестаном, горы, бархан, каньон',
-                    url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: ' Древний Дербент, весь Дербент, фонтаны Лун',
-                    url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: ' 5 жемчужин Дагестана, аул Призрак, подземный водопад',
-                    url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: 'Назад',
-                    color: Keyboard.PRIMARY_COLOR,
-                }),
-            ],
-        ]).oneTime(),
-    });
-}
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: '📍 Знакомство с Дагестаном, горы, бархан, каньон',
+                        url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '📍 Древний Дербент, весь Дербент, фонтаны Лун',
+                        url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '📍 5 жемчужин Дагестана, аул Призрак, подземный водопад',
+                        url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
 
     // Обработка кнопки "Назад"
     if (text === 'Назад') {
