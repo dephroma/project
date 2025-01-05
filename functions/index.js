@@ -7,6 +7,16 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
+const carousel = new VK.Carousel();
+carousel.add({
+    title: 'Товар 1',
+    image: 'https://example.com/image.jpg',
+    description: 'Краткое описание товара',
+    buttons: [
+        Keyboard.textButton({ label: 'Подробнее', payload: { command: 'product_1' } })
+    ]
+});
+
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
     const { type, group_id, secret } = body;
@@ -66,7 +76,7 @@ vk.updates.on('message_new', async (context) => {
         await context.send({
             message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.\n\nОткройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).\n\n Вот наш каталог экскурсий: \n https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928 https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669 https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569", 
             keyboard: Keyboard.keyboard([
-                [Keyboard.urlButton({ label: 'Знакомство с Дагестаном' , color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })], // URL-кнопка
+                [Keyboard.urlButton({ label: 'Знакомство с Дагестаном' , color: Keyboard.positive_color, url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' , color: Keyboard.POSITIVE_COLOR })], // URL-кнопка
                 [Keyboard.urlButton({ label: 'Древний Дербент' , color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })], // URL-кнопка
                 [Keyboard.urlButton({ label: '5 жемчужин Дагестана' , color: Keyboard.POSITIVE_COLOR,  url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })], // URL-кнопка
                 [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
@@ -117,17 +127,7 @@ vk.updates.on('message_new', async (context) => {
     } 
     
     else if (text === 'частые вопросы') {         console.log('Обработка кнопки "Частые вопросы"');
-        await context.send({
-            message: "Здесь вы найдете ответы на часто задаваемые вопросы. Если у вас есть другие вопросы, не стесняйтесь обращаться!",
-            keyboard: Keyboard.keyboard([
-                [
-                    Keyboard.textButton({
-                        label: 'Назад',
-                        color: Keyboard.PRIMARY_COLOR,
-                    }),
-                ],
-            ]).oneTime(),
-        });
+        await await message.send('Наши товары:', { carousel });
 
     } 
     
