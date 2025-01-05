@@ -41,7 +41,7 @@ vk.updates.on('message_new', async (context) => {
     console.log('Получено сообщение:', text);
 
     // Приветственное сообщение
-    if (['привет', 'старт', 'начало' , 'hi'].includes(text.toLowerCase())) {
+    if (['привет', 'старт', 'начало', 'hi'].includes(text.toLowerCase())) {
         console.log('Отправка приветственного сообщения');
         await context.send({
             message: "Привет, дорогой путешественник!👋\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже. Или напишите ваш вопрос прямо сюда, и я отвечу!😊",
@@ -97,47 +97,47 @@ vk.updates.on('message_new', async (context) => {
     }
 
     // Обработка кнопки "Экскурсии на 1 день"
-if (text === '\u{1f31f} Экскурсии на 1 день') {
-    console.log('Обработка кнопки "Экскурсии на 1 день"');
-    await context.send({
-        message: `Выберите вашу экскурсию! 🌟
+    if (text === '\u{1f31f} Экскурсии на 1 день') {
+        console.log('Обработка кнопки "Экскурсии на 1 день"');
+        await context.send({
+            message: `Выберите вашу экскурсию! 🌟
 
 Мы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.
 
 Откройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).
 
 👇 Вот наш каталог экскурсий:`,
-        keyboard: Keyboard.keyboard([
-            [
-                Keyboard.textButton({
-                    label: 'Знакомство с Дагестаном, горы, бархан, каньон',
-                    url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: 'Древний Дербент, весь Дербент, фонтаны Лун',
-                    url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: '5 жемчужин Дагестана, аул Призрак, подземный водопад',
-                    url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569',
-                    color: Keyboard.POSITIVE_COLOR,
-                }),
-            ],
-            [
-                Keyboard.textButton({
-                    label: 'Назад',
-                    color: Keyboard.PRIMARY_COLOR,
-                }),
-            ],
-        ]).oneTime(),
-    });
-}
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Знакомство с Дагестаном, горы, бархан, каньон',
+                        url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Древний Дербент, весь Дербент, фонтаны Лун',
+                        url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: '5 жемчужин Дагестана, аул Призрак, подземный водопад',
+                        url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569',
+                        color: Keyboard.POSITIVE_COLOR,
+                    }),
+                ],
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
+    }
 
     // Обработка кнопки "Назад"
     if (text === 'Назад') {
@@ -147,7 +147,7 @@ if (text === '\u{1f31f} Экскурсии на 1 день') {
             keyboard: Keyboard.keyboard([
                 [
                     Keyboard.textButton({
-                        label: '\u{1f4dc} Каталог и бронирование', // Добавлен смайлик
+                        label: '\u{1f4dc} Каталог и бронирование',
                         color: Keyboard.POSITIVE_COLOR,
                     }),
                 ],
@@ -199,6 +199,3 @@ if (text === '\u{1f31f} Экскурсии на 1 день') {
         });
     }
 });
-
-
-
