@@ -1,20 +1,10 @@
 require('dotenv').config();
 
-const { VK, Keyboard,Carousel } = require('vk-io');
+const { VK, Keyboard } = require('vk-io');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
-});
-
-const carousel = new VK.Carousel();
-carousel.add({
-    title: 'Товар 1',
-    image: 'https://example.com/image.jpg',
-    description: 'Краткое описание товара',
-    buttons: [
-        Keyboard.textButton({ label: 'Подробнее', payload: { command: 'product_1' } })
-    ]
 });
 
 exports.handler = async (event, context) => {
@@ -127,7 +117,17 @@ vk.updates.on('message_new', async (context) => {
     } 
     
     else if (text === 'частые вопросы') {         console.log('Обработка кнопки "Частые вопросы"');
-        await await message.send('Наши товары:', { carousel });
+        await context.send({
+            message: "Здесь вы найдете ответы на часто задаваемые вопросы. Если у вас есть другие вопросы, не стесняйтесь обращаться!",
+            keyboard: Keyboard.keyboard([
+                [
+                    Keyboard.textButton({
+                        label: 'Назад',
+                        color: Keyboard.PRIMARY_COLOR,
+                    }),
+                ],
+            ]).oneTime(),
+        });
 
     } 
     
