@@ -64,7 +64,7 @@ vk.updates.on('message_new', async (context) => {
     
     else if (text === 'экскурсии на 1 день') { // Сравнение в нижнем регистре
         await context.send({
-            message: `Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.\n\nОткройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).\n\n Вот наш каталог экскурсий:`,
+            message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.\n\nОткройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).\n\n Вот наш каталог экскурсий:",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Знакомство с Дагестаном' , color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })], // URL-кнопка
                 [Keyboard.urlButton({ label: 'Древний Дербент' , color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })], // URL-кнопка
