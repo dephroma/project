@@ -15,5 +15,8 @@
     "env-var": "^7.5.0",
     "express": "^4.19.2",
     "vk-io": "^4.9.1"
-  }
+  },
+  "config": {
+  "vk_api_version": "5.150"
+}
 }
