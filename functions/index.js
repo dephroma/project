@@ -145,7 +145,7 @@ vk.updates.on('message_new', async (context) => {
     } 
 
 
-    else if (context.text.toLowerCase() === 'кар') {
+    else if (context.text.toLowerCase() === 'карусель') {
         await context.send({
             message: 'Вот моя карусель:',
             template: JSON.stringify({
