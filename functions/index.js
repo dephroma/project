@@ -188,7 +188,7 @@ vk.updates.on('message_new', async (context) => {
                     }
                 ]
             })
-        });
+        })
     }
 
     else {
