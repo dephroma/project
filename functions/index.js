@@ -5,7 +5,7 @@ const { VK, Keyboard, Carousel } = require('vk-io');
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
-    apiVersion: '5.199'
+    apiVersion: '5.150'
 });
 
 exports.handler = async (event, context) => {
