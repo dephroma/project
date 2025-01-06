@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const { VK, Keyboard } = require('vk-io');
 
 const vk = new VK({
@@ -7,7 +6,7 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-let userStates = {};  // Объект для хранения состояния пользователей
+const userStates = {};  // Хранение состояния пользователей
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
@@ -38,22 +37,76 @@ exports.handler = async (event, context) => {
 };
 
 vk.updates.on('message_new', async (context) => {
+    const userId = context.senderId;
     const text = context.text.trim().toLowerCase(); // Безопасное получение текста и приведение к нижнему регистру
     console.log('Получено сообщение:', text);
 
-    // Инициализируем состояние пользователя, если его нет
-    if (!userStates[context.senderId]) {
-        userStates[context.senderId] = {
-            lastMenu: 'main',  // Основное меню по умолчанию
-        };
+    // Если пользователь еще не начал общение, показываем стартовое сообщение
+    if (!userStates[userId]) {
+        userStates[userId] = 'start';
     }
 
-    const state = userStates[context.senderId];  // Состояние пользователя
+    // Логика для кнопки "Назад"
+    const handleBackButton = async () => {
+        const currentState = userStates[userId];
 
+        if (currentState === 'start') {
+            return context.send({
+                message: "Привет, дорогой путешественник! Чем могу помочь?",
+                keyboard: Keyboard.keyboard([
+                    [Keyboard.textButton({ label: 'Каталог и бронирование', color: Keyboard.POSITIVE_COLOR })],
+                    [Keyboard.textButton({ label: 'Даты и цены', color: Keyboard.PRIMARY_COLOR })],
+                    [Keyboard.textButton({ label: 'Частые вопросы', color: Keyboard.NEGATIVE_COLOR })],
+                ]).oneTime(),
+            });
+        }
+
+        if (currentState === 'catalog') {
+            return context.send({
+                message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n Экскурсии на 1 день и Многодневные туры.",
+                keyboard: Keyboard.keyboard([
+                    [Keyboard.textButton({ label: 'Экскурсии на 1 день', color: Keyboard.POSITIVE_COLOR })],
+                    [Keyboard.textButton({ label: 'Многодневные туры', color: Keyboard.POSITIVE_COLOR })],
+                    [Keyboard.textButton({ label: 'Назад', color: Keyboard.PRIMARY_COLOR })],
+                ]).oneTime(),
+            });
+        }
+
+        if (currentState === 'excursions') {
+            return context.send({
+                message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты для знакомства с Дагестаном за один день.",
+                keyboard: Keyboard.keyboard([
+                    [Keyboard.urlButton({ label: 'Знакомство с Дагестаном', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
+                    [Keyboard.urlButton({ label: 'Древний Дербент', color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
+                    [Keyboard.urlButton({ label: '5 жемчужин Дагестана', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
+                    [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
+                ]).oneTime(),
+            });
+        }
+
+        if (currentState === 'multiday') {
+            return context.send({
+                message: "Выберите ваш многодневный тур! ✨\n\nМы подготовили маршруты для тех, кто хочет отдохнуть на несколько дней и погрузиться в культуру Дагестана.",
+                keyboard: Keyboard.keyboard([
+                    [Keyboard.urlButton({ label: 'Край мечты (3 дня)', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/kray-mechty-3-dnya-vse-vklyucheno-28295020-9825947' })],
+                    [Keyboard.urlButton({ label: 'Весь Дагестан (5 дней)', color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/ves-dagestan-5-dney-vse-vklyucheno-28295020-4189351' })],
+                    [Keyboard.urlButton({ label: 'Дагестанский Вояж (7 дней)', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/quotdagestanskiy-voyazhquot-7-dney-vse-vklyucheno-28295020-9906226' })],
+                    [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
+                ]).oneTime(),
+            });
+        }
+    };
+
+    if (text === 'назад') {
+        await handleBackButton();
+        return;
+    }
+
+    // Логика для обработки команд
     if (['привет', 'старт', 'начало', 'hi'].includes(text)) {
-        state.lastMenu = 'main';  // Если старт, то сбрасываем на главное меню
+        userStates[userId] = 'start';
         await context.send({
-            message: "Привет, дорогой путешественник!\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже. Или напишите ваш вопрос прямо сюда, и я отвечу!",
+            message: "Привет, дорогой путешественник!\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?",
             keyboard: Keyboard.keyboard([
                 [Keyboard.textButton({ label: 'Каталог и бронирование', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: 'Даты и цены', color: Keyboard.PRIMARY_COLOR })],
@@ -61,9 +114,9 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     } 
-
+    
     else if (text === 'каталог и бронирование') {
-        state.lastMenu = 'catalog';  // Сохраняем текущее состояние
+        userStates[userId] = 'catalog';
         await context.send({
             message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n✨ Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.\n\nВыберите подходящий маршрут и нажмите «Забронировать» на карточке товара. После этого я помогу оформить заявку!",
             keyboard: Keyboard.keyboard([
@@ -72,64 +125,81 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: 'Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
-    }
-
+    } 
+    
     else if (text === 'экскурсии на 1 день') {
-        state.lastMenu = 'one_day_excur';  // Сохраняем текущее состояние
+        userStates[userId] = 'excursions';
         await context.send({
-            message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.\n\nОткройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).\n\n Вот наш каталог экскурсий:", 
+            message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты для знакомства с Дагестаном за один день.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.urlButton({ label: 'Знакомство с Дагестаном', url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
-                [Keyboard.urlButton({ label: 'Древний Дербент', url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
-                [Keyboard.urlButton({ label: '5 жемчужин Дагестана', url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
+                [Keyboard.urlButton({ label: 'Знакомство с Дагестаном', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
+                [Keyboard.urlButton({ label: 'Древний Дербент', color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
+                [Keyboard.urlButton({ label: '5 жемчужин Дагестана', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
                 [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime(),
         });
-    }
-
+    } 
+    
     else if (text === 'многодневные туры') {
-        state.lastMenu = 'multi_day_excur';  // Сохраняем текущее состояние
+        userStates[userId] = 'multiday';
         await context.send({
-            message: "Выберите ваш тур! ✨\n\nМы подготовили маршруты, которые позволят вам полностью погрузиться в красоту и культуру Дагестана.\nОткройте подходящий тур, чтобы узнать подробности и нажмите кнопку бронирования (бронировать/написать/связаться). Хотите тур на другое количество дней? Напишите нам!\n\n👇 Ниже вы найдёте наш каталог многодневных туров:",
+            message: "Выберите ваш многодневный тур! ✨\n\nМы подготовили маршруты для тех, кто хочет отдохнуть на несколько дней и погрузиться в культуру Дагестана.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.urlButton({ label: 'Край мечты — 3 дня', url: 'https://vk.com/market/product/kray-mechty-3-dnya-vse-vklyucheno-28295020-9825947' })],
-                [Keyboard.urlButton({ label: 'Весь Дагестан — 5 дней', url: 'https://vk.com/market/product/ves-dagestan-5-dney-vse-vklyucheno-28295020-4189351' })],
-                [Keyboard.urlButton({ label: 'Дагестанский вояж — 7 дней', url: 'https://vk.com/market/product/quotdagestanskiy-voyazhquot-7-dney-vse-vklyucheno-28295020-9906226' })],
+                [Keyboard.urlButton({ label: 'Край мечты (3 дня)', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/kray-mechty-3-dnya-vse-vklyucheno-28295020-9825947' })],
+                [Keyboard.urlButton({ label: 'Весь Дагестан (5 дней)', color: Keyboard.PRIMARY_COLOR, url: 'https://vk.com/market/product/ves-dagestan-5-dney-vse-vklyucheno-28295020-4189351' })],
+                [Keyboard.urlButton({ label: 'Дагестанский Вояж (7 дней)', color: Keyboard.POSITIVE_COLOR, url: 'https://vk.com/market/product/quotdagestanskiy-voyazhquot-7-dney-vse-vklyucheno-28295020-9906226' })],
                 [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime(),
         });
+    } 
+    
+    else if (text === 'частые вопросы') {
+        const questions = [
+            "Где найти полную программу тура?",
+            "Можно ли брать детей?",
+            "Когда оплачивается тур?",
+            "Что входит в стоимость?",
+            "Оплачиваете ли вы перелёт?",
+            "В цену входит катание на катере?",
+            "Как и когда кормят?",
+            "Сколько человек будет в группе?",
+            "Что брать с собой в поездку?",
+            "Как одеваться в Дагестане?",
+            "Где можно посмотреть отзывы?",
+            "Как ловит связь?",
+            "Расскажите о вашей команде?",
+            "Какие условия проживания?",
+            "На каких машинах ездите?",
+            "Есть зарядки и вай-фай?",
+            "У вас есть тех поддержка?",
+            "Нужна ли страховка?",
+            "Официально ли работает ваша фирма?",
+            "Кому направлять жалобы?",
+            "Какие документы брать с собой?",
+            "Можно ли брать домашних животных?",
+            "Какая погода в Дагестане?"
+        ];
+    
+        // Функция для отправки сообщений с задержкой
+        const sendQuestionsWithDelay = async () => {
+            for (let i = 0; i < questions.length; i++) {
+                await context.send({
+                    message: questions[i],
+                    keyboard: Keyboard.keyboard([
+                        [Keyboard.textButton({ label: 'Назад', color: Keyboard.PRIMARY_COLOR })],
+                    ]).oneTime(),
+                });
+    
+                // Задержка 1 секунда перед отправкой следующего сообщения
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+        };
+    
+        // Запуск отправки вопросов
+        await sendQuestionsWithDelay();
     }
-
-    else if (text === 'назад') {
-        // Переход в предыдущее меню
-        if (state.lastMenu === 'main') {
-            await context.send({
-                message: "Привет, дорогой путешественник!👋 Я — ваш виртуальный гид. Чем могу помочь?",
-                keyboard: Keyboard.keyboard([
-                    [Keyboard.textButton({ label: 'Каталог и бронирование', color: Keyboard.POSITIVE_COLOR })],
-                    [Keyboard.textButton({ label: 'Даты и цены', color: Keyboard.PRIMARY_COLOR })],
-                    [Keyboard.textButton({ label: 'Частые вопросы', color: Keyboard.NEGATIVE_COLOR })],
-                ]).oneTime(),
-            });
-        } else if (state.lastMenu === 'catalog') {
-            await context.send({
-                message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n✨ Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.\n\nВыберите подходящий маршрут и нажмите «Забронировать» на карточке товара. После этого я помогу оформить заявку!",
-                keyboard: Keyboard.keyboard([
-                    [Keyboard.textButton({ label: 'Экскурсии на 1 день', color: Keyboard.POSITIVE_COLOR })],
-                    [Keyboard.textButton({ label: 'Многодневные туры', color: Keyboard.POSITIVE_COLOR })],
-                    [Keyboard.textButton({ label: 'Назад', color: Keyboard.PRIMARY_COLOR })],
-                ]).oneTime(),
-            });
-        } else if (state.lastMenu === 'one_day_excur') {
-            await context.send({
-                message: "Выберите вашу экскурсию! \n\nМы подготовили для вас маршруты, которые позволят за один день увидеть самое лучшее, что может предложить Дагестан.\n\nОткройте подходящую экскурсию, чтобы узнать подробности, далее нажмите кнопку бронирования (бронировать/написать/связаться).\n\n Вот наш каталог экскурсий:", 
-                keyboard: Keyboard.keyboard([
-                    [Keyboard.urlButton({ label: 'Знакомство с Дагестаном', url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
-                    [Keyboard.urlButton({ label: 'Древний Дербент', url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
-                    [Keyboard.urlButton({ label: '5 жемчужин Дагестана', url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
-                    [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
-                ]).oneTime(),
-            });
-        }
+   
+    else { // Обработка других сообщений
+        await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню.');
     }
 });
