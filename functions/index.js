@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { VK, Keyboard } = require('vk-io');
+const { VK, Keyboard, Carousel } = require('vk-io');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
@@ -144,27 +144,18 @@ vk.updates.on('message_new', async (context) => {
         });
     } 
 
-    else if (text === 'пидор') {
-        await context.send({
-            "type": "carousel",
-            "elements": [{
-                "title": "Title",
-                "description": "Description",
-                "action": {
-                        "type": "open_link",
-                        "link": "https://vk.com"
-                },
-                "photo_id": "-109837093_457242809",
-                "buttons": [{
-                        "action": {
-                                "type": "text",
-                                "label": "Label"
-                        }
-                }]
+    else if (text === 'пидор')
+        {
+            await context.send({
+                "type": "carousel",
+                "elements": [
+                    element1,
+                    element2,
+                    element3
+                ]})
+
         }
-            ]
-        });
-    } 
+     
     
     else {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
