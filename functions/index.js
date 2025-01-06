@@ -49,12 +49,17 @@ vk.updates.on('message_new', async (context) => {
     // Логика для кнопки "Назад"
     const handleBackButton = async () => {
         const userState = userStates[userId];
+        console.log('Текущий стек для пользователя:', userState.stack); // Логирование текущего состояния стека
+
         const currentState = userState.stack.pop();  // Берем последний элемент из стека
 
         // Если стек пуст, то это начальная страница
         if (userState.stack.length === 0) {
             userState.stack.push('start');  // Для защиты от пустого стека
         }
+
+        // Логируем текущий блок после "Назад"
+        console.log('Возвращаемся в состояние:', userState.stack[userState.stack.length - 1]);
 
         // Проверка состояния и вывод соответствующего сообщения
         if (currentState === 'start') {
@@ -105,6 +110,7 @@ vk.updates.on('message_new', async (context) => {
     };
 
     if (text === 'назад') {
+        console.log('Нажата кнопка назад для пользователя:', userId);  // Логирование нажатия кнопки "назад"
         await handleBackButton();
         return;
     }
@@ -161,6 +167,7 @@ vk.updates.on('message_new', async (context) => {
     } 
     
     else { // Обработка других сообщений
+        console.log('Не понимаю, что написал пользователь:', text);
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню.');
     }
 });
