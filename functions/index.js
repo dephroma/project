@@ -146,7 +146,7 @@ vk.updates.on('message_new', async (context) => {
 
     else if (text === 'пидор')
         {
-            await context.send({
+            await Carousel.send({
                 "type": "carousel",
                 "elements": [
                     element1,
