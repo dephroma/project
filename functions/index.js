@@ -54,7 +54,7 @@ vk.updates.on('message_new', async (context) => {
             keyboard: Keyboard.keyboard([
                 [Keyboard.textButton({ label: '\u{1f31f} Экскурсии на 1 день', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{2728} Многодневные туры', color: Keyboard.POSITIVE_COLOR })],
-                [Keyboard.textButton({ label: '\u{fe0f} Назад', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     } 
@@ -66,7 +66,7 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.urlButton({ label: '\u{1f449} Знакомство с Дагестаном \u{2728}', url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
                 [Keyboard.urlButton({ label: '\u{1f449} Древний Дербент \u{2728}', url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
                 [Keyboard.urlButton({ label: '\u{1f449} 5 жемчужин Дагестана \u{2728}', url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
-                [Keyboard.textButton({ label: '\u{fe0f} Назад', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     } 
@@ -78,7 +78,7 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.urlButton({ label: '\u{1f449} Край мечты - 3 дня \u{2728}', url: 'https://vk.com/market/product/kray-mechty-3-dnya-vse-vklyucheno-28295020-9825947' })],
                 [Keyboard.urlButton({ label: '\u{1f449} Весь Дагестан - 5 дней \u{2728}', url: 'https://vk.com/market/product/ves-dagestan-5-dney-vse-vklyucheno-28295020-4189351' })],
                 [Keyboard.urlButton({ label: '\u{1f449} Дагестанский вояж - 7 дней \u{2728}', url: 'https://vk.com/market/product/quotdagestanskiy-voyazhquot-7-dney-vse-vklyucheno-28295020-9906226' })],
-                [Keyboard.textButton({ label: '\u{fe0f} Назад', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     } 
@@ -94,7 +94,7 @@ vk.updates.on('message_new', async (context) => {
         await context.send({
             message: "🗓️Даты туров.\n\nРасписание здесь↓\nЗдесь будет ссылка на актуальные даты поездок.\n\nЕсли ссылки в этом месяце нет, напишите желаемую дату тура при бронировании.\n\nЕсли ваша группа состоит из 4 человек или больше, вы сможете выбрать любую удобную дату тура и путешествовать только своей компанией. Ждём вас в захватывающем путешествии!\n\nЕсли у вас есть друзья или знакомые, которые тоже любят путешествия, подумайте о том, чтобы отправиться в поездку вместе. Наша команда всегда готова помочь вам организовать идеальный отдых в хорошей компании!\n\nТакже организовываем индивидуальные туры (1-2 человека), условия обговариваются отдельно.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.textButton({ label: '\u{fe0f} Назад', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     } 
@@ -126,12 +126,12 @@ vk.updates.on('message_new', async (context) => {
                 "22. Можно ли брать домашних животных?\n" +
                 "23. Какая погода в Дагестане?",
             keyboard: Keyboard.keyboard([
-                [Keyboard.textButton({ label: '\u{fe0f} Назад', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     }
     
-    else if (text === '\u{fe0f} назад') {
+    else if (text === '\u{21a9} назад') {
         await context.send({
             message: "Привет, дорогой путешественник!\n👋 Я — ваш виртуальный гид.\n Чем могу помочь?",
             keyboard: Keyboard.keyboard([
