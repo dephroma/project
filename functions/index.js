@@ -195,3 +195,5 @@ vk.updates.on('message_new', async (context) => {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
     }
 });
+
+vk.updates.start().catch(console.error);
