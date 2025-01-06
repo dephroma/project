@@ -66,7 +66,7 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.urlButton({ label: 'Знакомство с Дагестаном', url: 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928' })],
                 [Keyboard.urlButton({ label: 'Древний Дербент', url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669' })],
                 [Keyboard.urlButton({ label: '5 жемчужин Дагестана', url: 'https://vk.com/market/product/5-zhemchuzhin-dagestana-aul-prizrak-podzemny-vodopad-karstovy-proval-terrasy-28295020-9863569' })],
-                [Keyboard.textButton({ label: 'Назад', color: Keyboard.NEGATIVE_COLOR })],
+                [Keyboard.textButton({ label: 'Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     } 
