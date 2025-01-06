@@ -144,55 +144,52 @@ vk.updates.on('message_new', async (context) => {
         });
     } 
 
-    else if (text === 'пидор')
-        {
-            await Carousel.send({
-                "type": "carousel",
-                "elements": [{
-                        "photo_id": "-109837093_457242811",
-                        "action": {
-                            "type": "open_photo"
-                        },
-                        "buttons": [{
-                            "action": {
-                                "type": "text",
-                                "label": "Текст кнопки 🌚",
-                                "payload": "{}"
-                            }
-                        }]
-                    },
-                    {
-                        "photo_id": "-109837093_457242811",
-                        "action": {
-                            "type": "open_photo"
-                        },
-                        "buttons": [{
-                            "action": {
-                                "type": "text",
-                                "label": "Текст кнопки 2",
-                                "payload": "{}"
-                            }
-                        }]
-                    },
-                    {
-                        "photo_id": "-109837093_457242811",
-                        "action": {
-                            "type": "open_photo"
-                        },
-                        "buttons": [{
-                            "action": {
-                                "type": "text",
-                                "label": "Текст кнопки 3",
-                                "payload": "{}"
-                            }
-                        }]
-                    }
-                ]
-            })
 
-        }
-     
-    
+    else if (text === 'пидор') {
+        await Courosel.send({
+        "type": "carousel",
+        "elements": [{
+                "photo_id": "-109837093_457242811",
+                "action": {
+                    "type": "open_photo"
+                },
+                "buttons": [{
+                    "action": {
+                        "type": "text",
+                        "label": "Текст кнопки 🌚",
+                        "payload": "{}"
+                    }
+                }]
+            },
+            {
+                "photo_id": "-109837093_457242811",
+                "action": {
+                    "type": "open_photo"
+                },
+                "buttons": [{
+                    "action": {
+                        "type": "text",
+                        "label": "Текст кнопки 2",
+                        "payload": "{}"
+                    }
+                }]
+            },
+            {
+                "photo_id": "-109837093_457242811",
+                "action": {
+                    "type": "open_photo"
+                },
+                "buttons": [{
+                    "action": {
+                        "type": "text",
+                        "label": "Текст кнопки 3",
+                        "payload": "{}"
+                    }
+                }]
+            }
+        ]
+    })}
+
     else {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
     }
