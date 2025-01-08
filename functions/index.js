@@ -150,7 +150,7 @@ vk.updates.on('message_new', async (context) => {
     else if (context.text.toLowerCase() === 'карусель') {
         // Первый элемент
         await context.send({
-            picture: 'https://vk.com/photo-28295020_457239221', // Замените на ваш photo_id
+            attachment: 'https://vk.com/photo-28295020_457239221', // Замените на ваш photo_id
             message: "🌟 Первый элемент:\nОписание первого элемент.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Подробнее', url: 'https://example.com' })],
@@ -178,5 +178,3 @@ vk.updates.on('message_new', async (context) => {
 });
 
 
-
-  
