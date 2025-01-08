@@ -148,24 +148,29 @@ vk.updates.on('message_new', async (context) => {
 
 
     else if (context.text.toLowerCase() === 'карусель') {
+        // Первый элемент
         await context.send({
-            message: "🌟 Первый элемент:\nОписание первого элемента.\n[Подробнее здесь](https://example.com)",
+            attachment: 'photo-12345678_123456789', // Замените на ваш photo_id
+            message: "🌟 Первый элемент:\nОписание первого элемента.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.textButton({ label: 'Кнопка 1', color: Keyboard.POSITIVE_COLOR })],
+                [Keyboard.urlButton({ label: 'Подробнее', url: 'https://example.com' })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     
         await new Promise((resolve) => setTimeout(resolve, 1500)); // Пауза для имитации последовательности
     
+        // Второй элемент
         await context.send({
-            message: "✨ Второй элемент:\nОписание второго элемента.\n[Подробнее здесь](https://another-example.com)",
+            attachment: 'photo-12345678_987654321', // Замените на ваш photo_id
+            message: "✨ Второй элемент:\nОписание второго элемента.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.textButton({ label: 'Перейти', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.urlButton({ label: 'Перейти', url: 'https://another-example.com' })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
             ]).oneTime(),
         });
     }
+    
 
     else {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
