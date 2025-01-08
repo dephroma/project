@@ -152,7 +152,7 @@ vk.updates.on('message_new', async (context) => {
         // Первый элемент
         await context.send({
             attachment: 'https://vk.com/photo-28295020_457239221', // Замените на ваш photo_id
-            message: "🌟 Первый элемент:\nОписание первого элемента.",
+            message: "🌟 Первый элемент:\nОписание первого элемент.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Подробнее', url: 'https://example.com' })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
@@ -163,7 +163,7 @@ vk.updates.on('message_new', async (context) => {
     
         // Второй элемент
         await context.send({
-            attachment: 'https://vk.com/photo-28295020_457239323', // Замените на ваш photo_id
+            attachment: 'photo-28295020_457239323', // Замените на ваш photo_id
             message: "✨ Второй элемент:\nОписанией второго элемента.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Перейти', url: 'https://another-example.com' })],
