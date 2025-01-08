@@ -17,6 +17,6 @@
     "vk-io": "^4.9.1"
   },
   "config": {
-  "vk_api_version": "5.150"
+  "vk_api_version": "5.95"
 }
 }
