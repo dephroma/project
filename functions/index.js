@@ -78,6 +78,3 @@ bot.on((ctx) => {
     }
   });
   
-  // Запуск бота
-  bot.startPolling();
-  console.log('Бот запущен!');
