@@ -162,7 +162,7 @@ vk.updates.on('message_new', async (context) => {
     
         // Второй элемент
         await context.send({
-            attachment: 'photo-12345678_987654321', // Замените на ваш photo_id
+            attachment: 'https://vk.com/photo-28295020_457239323', // Замените на ваш photo_id
             message: "✨ Второй элемент:\nОписание второго элемента.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Перейти', url: 'https://another-example.com' })],
