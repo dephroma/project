@@ -149,47 +149,21 @@ vk.updates.on('message_new', async (context) => {
 
     else if (context.text.toLowerCase() === 'карусель') {
         await context.send({
-            message: 'Вот моя карусель:',
-            template: JSON.stringify({
-                type: 'carousel',
-                elements: [
-                    {
-                        title: 'Первый элемент',
-                        description: 'Описание первого элемента',
-                        photo_id: '-12345678_123456789', // ID изображения
-                        action: {
-                            type: 'open_link',
-                            link: 'https://example.com'
-                        },
-                        buttons: [
-                            {
-                                action: {
-                                    type: 'text',
-                                    label: 'Кнопка 1'
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Второй элемент',
-                        description: 'Описание второго элемента',
-                        photo_id: '-12345678_987654321', // ID изображения
-                        action: {
-                            type: 'open_link',
-                            link: 'https://another-example.com'
-                        },
-                        buttons: [
-                            {
-                                action: {
-                                    type: 'open_link',
-                                    label: 'Перейти',
-                                    link: 'https://another-example.com'
-                                }
-                            }
-                        ]
-                    }
-                ]
-            })
+            message: "🌟 Первый элемент:\nОписание первого элемента.\n[Подробнее здесь](https://example.com)",
+            keyboard: Keyboard.keyboard([
+                [Keyboard.textButton({ label: 'Кнопка 1', color: Keyboard.POSITIVE_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
+            ]).oneTime(),
+        });
+    
+        await new Promise((resolve) => setTimeout(resolve, 1500)); // Пауза для имитации последовательности
+    
+        await context.send({
+            message: "✨ Второй элемент:\nОписание второго элемента.\n[Подробнее здесь](https://another-example.com)",
+            keyboard: Keyboard.keyboard([
+                [Keyboard.textButton({ label: 'Перейти', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
+            ]).oneTime(),
         });
     }
 
