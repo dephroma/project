@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { VK, Keyboard } = require('vk-io');
 
-const { handleWebhook } = require('./handleWebhook');
+const { handleWebhook } = require('../handleWebhook');
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
