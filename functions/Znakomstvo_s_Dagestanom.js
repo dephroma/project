@@ -39,7 +39,7 @@ vk.updates.on('message_new', async (context) => {
     const userName = context.senderId ? await getUserName(context.senderId) : 'друг';
 
     // Приветственное сообщение с кнопками
-    if (context.text === '/start') {
+    if (context.text === 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928') {
         await context.send({
             message: `${userName}, поздравляем вас с выбором экскурсии! 🚀\n\n` +
                      'Чтобы продолжить процесс бронирования или получить дополнительную информацию, вы можете воспользоваться кнопками ниже.\n\n' +
