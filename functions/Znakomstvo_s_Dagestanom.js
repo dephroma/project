@@ -36,7 +36,6 @@ exports.handler = async (event, context) => {
 
 vk.updates.on('message_new', async (context) => {
          // Получаем имя пользователя из context
-    const userName = context.senderId ? await getUserName(context.senderId) : 'друг';
 
     // Приветственное сообщение с кнопками
     if (context.text === 'https://vk.com/market/product/znakomstvo-s-dagestanom-gory-barkhan-kanion-28295020-9825928') {
@@ -102,12 +101,5 @@ vk.updates.on('message_new', async (context) => {
 });
 
 // Функция для получения имени пользователя по его ID
-async function getUserName(userId) {
-    const user = await vk.api.users.get({ user_ids: userId });
-    return user[0].first_name; // или можно использовать full_name, если нужно полное имя
-}
-
-// Запуск бота
-vk.updates.start().catch(console.error);
 
 
