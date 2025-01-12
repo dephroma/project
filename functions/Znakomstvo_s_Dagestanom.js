@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
 };
 
 
-// Задаем функцию для обработки сообщения
+// Задаем функцию для обработки сообщения  TEST TEST TEST
 const handleMessage = async (context, text) => {
     // Логика для обработки сообщений
     if (['тур', 'биба', 'хуй', 'bye'].includes(text)) {
