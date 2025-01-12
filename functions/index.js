@@ -163,7 +163,7 @@ vk.updates.on('message_new', async (context) => {
         // Второй элемент
         await context.send({
             attachment: 'photo-28295020_457239323', // Замените на ваш photo_id
-            message: "✨ Второй элемент:\nОписанией второго элемента.",
+            message: "✨ Второй элемент:\nОписание второго элемента.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Перейти', url: 'https://another-example.com' })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.PRIMARY_COLOR })],
