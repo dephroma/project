@@ -8,7 +8,7 @@
   status = 200
 
     [[redirects]]
-  from = "/"
+  from = "/2"
   to = "/.netlify/functions/Znakomstvo_s_Dagestanom"
   status = 200
 
