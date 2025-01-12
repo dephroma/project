@@ -3,12 +3,12 @@
 
 
   [[redirects]]
-  from = "/bot"
+  from = "/"
   to = "/.netlify/functions/index"
   status = 200
 
     [[redirects]]
-  from = "/znakomstvo"
+  from = "/"
   to = "/.netlify/functions/Znakomstvo_s_Dagestanom"
   status = 200
 
