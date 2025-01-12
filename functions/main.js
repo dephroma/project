@@ -2,7 +2,7 @@
 require('dotenv').config();
 const { VK } = require('vk-io');
 const generalBot = require('./index');
-const tourBot = require('./Znakomstvo_s_Dagestanom');
+const znakomstvo = require('./Znakomstvo_s_Dagestanom');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
@@ -41,9 +41,9 @@ vk.updates.on('message_new', async (context) => {
     const message = context.text.trim().toLowerCase();
 
     // Смотрим, какое слово пришло и перенаправляем в нужную логику
-    if (['тур', 'биба', 'хуй', 'bye'].includes(message)) {
+    if (['биба', 'хуй', 'bye'].includes(message)) {
         // Передаём сообщение в файл логики тура
-        await tourBot.handleMessage(context);
+        await znakomstvo.handleMessage(context);
     } else if (['привет', 'старт', 'начало', 'hi'].includes(message)) {
         // Передаём сообщение в файл логики общего бота
         await generalBot.handleMessage(context);
