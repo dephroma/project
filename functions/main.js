@@ -36,15 +36,19 @@ exports.handler = async (event, context) => {
     };
 };
 
-// Обработка сообщений и "разведение"
+// Обработка сообщений и "разведение" на нужных ботов
 vk.updates.on('message_new', async (context) => {
     const message = context.text.trim().toLowerCase();
 
-    if (['тур', 'биба', 'хуй', 'bye'].includes(text)) {
+    // Смотрим, какое слово пришло и перенаправляем в нужную логику
+    if (['тур', 'биба', 'хуй', 'bye'].includes(message)) {
         // Передаём сообщение в файл логики тура
         await tourBot.handleMessage(context);
-    } else if(['привет', 'старт', 'начало', 'hi'].includes(text)){
+    } else if (['привет', 'старт', 'начало', 'hi'].includes(message)) {
         // Передаём сообщение в файл логики общего бота
         await generalBot.handleMessage(context);
+    } else {
+        // Если сообщение не распознано
+        await context.send("Я не понимаю ваш запрос. Пожалуйста, используйте команды.");
     }
 });
