@@ -4,5 +4,5 @@
 
   [[redirects]]
   from = "/"
-  to = "/.netlify/functions/Znakomstvo_s_Dagestanom"
+  to = "/.netlify/functions/Znakomstvo_s_Dagestanom",".netlify/functions/index"
   status = 200
