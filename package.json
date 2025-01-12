@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "main": "functions/Znakomstvo_s_Dagestanom.js",
+  "main": "functions/index.js",
   "scripts": {
     "start:index": "node functions/index.js" ,
     "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
