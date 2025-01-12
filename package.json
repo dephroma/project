@@ -1,10 +1,12 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "main": "functions/index.js",
+  "main": "functions/main.js",
   "scripts": {
     "start:index": "node functions/index.js" ,
-    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"},
+    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
+    "start:main": "node functions/main.js" 
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
