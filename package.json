@@ -4,7 +4,7 @@
   "main": "functions/index.js",
   "scripts": {
     "start:index": "node functions/index.js" ,
-     "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"},
+    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"},
   "keywords": [],
   "author": "",
   "license": "ISC",
