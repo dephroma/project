@@ -1,6 +1,6 @@
 require('dotenv').config();         //Полностью рабочий файл
 
-const { VK, Keyboard, } = require('vk-io');
+const { VK } = require('vk-io');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
