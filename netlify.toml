@@ -7,7 +7,4 @@
   to = "/.netlify/functions/index"
   status = 200
 
-  from = "/2"
-  to = "/.netlify/functions/Znakomstvo_s_Dagestanom"
-  status = 200
 
