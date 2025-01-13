@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "functions/index.js",
   "scripts": {
-    "start:index": "node functions/index.js" ,
+    "start:index": "node functions/index.js",
     "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
-    "start:main": "node functions/main.js" 
+    "start:main": "node functions/main.js",
+    "start:webhookHandler": "node functions/webhookHandler.js",
+    "start:vkConfig": "node functions/vkConfig.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +15,7 @@
   "description": "",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "env-var": "^7.5.0",
     "express": "^4.19.2",
     "node-vk-bot-api": "^3.5.0",

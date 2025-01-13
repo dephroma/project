@@ -1,38 +1,5 @@
-require('dotenv').config();         //Полностью рабочий файл
-
-const { VK, Keyboard } = require('vk-io');
-
-const vk = new VK({
-    token: process.env.VK_TOKEN,
-    webhookSecret: process.env.VK_SECRET,
-
-});
-
-exports.handler = async (event, context) => {
-    const body = JSON.parse(event.body);
-    const { type, group_id, secret } = body;
-
-    if (secret !== process.env.VK_SECRET || group_id !== parseInt(process.env.VK_GROUP_ID, 10)) {
-        return {
-            statusCode: 403,
-            body: 'Forbidden',
-        };
-    }
-
-    if (type === 'confirmation') {
-        return {
-            statusCode: 200,
-            body: process.env.VK_CONFIRMATION,
-        };
-    }
-
-    await vk.updates.handleWebhookUpdate(body);
-
-    return {
-        statusCode: 200,
-        body: 'OK',
-    };
-};
+const vk = require('./vkConfig'); // Подключаем VK из конфигурации
+const { Keyboard } = require('vk-io'); //Подключаем клаву
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
