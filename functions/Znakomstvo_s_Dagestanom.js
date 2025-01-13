@@ -1,5 +1,4 @@
-require('dotenv').config();         //Полностью рабочий файл
-
+require('dotenv').config();
 const { VK, Keyboard } = require('vk-io');
 
 const vk = new VK({
