@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config();    //запускаемый файл без ошибок, рабочий
 const { VK, Keyboard } = require('vk-io');
 
 const vk = new VK({
@@ -48,6 +48,13 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     } 
+
+    else if (text === 'да') {
+        await context.send({
+            message: "🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️",
+        });
+    }
+
         
     else {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
