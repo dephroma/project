@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
-    const { handleText } = require('./test');
+
     //Оставил пока что только это, тупо скопировал из index, чтобы наверняка не было ошибок. Кроме триггеров, конечно
     if (['биба', 'хуй', 'горох', 'bye'].includes(text)) {
         await context.send({
@@ -48,6 +48,11 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     } 
+
+    else if (text === 'да') {
+        await test(context); // Вызов функции
+        return; // Завершаем обработку, если условие выполнено
+    }
 
        
     else {
