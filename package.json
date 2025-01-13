@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "main": "functions/vkConfig.js",
+  "main": "functions/Znakomstvo_s_Dagestanom.js",
     "_comment": "Есть ли разница, в какой последовательности будут запускаться скрипты? Я ввел команду start all, чтобы ввести зависимости ",
   "scripts": {     
     "start:vkConfig": "node functions/vkConfig.js",                  
