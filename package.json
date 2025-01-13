@@ -2,12 +2,14 @@
   "name": "project",
   "version": "1.0.0",
   "main": "functions/vkConfig.js",
-  "scripts": {
+    "_comment": "Есть ли разница, в какой последовательности будут запускаться скрипты? Я ввел команду start all, чтобы ввести зависимости ",
+  "scripts": {     
+    "start:vkConfig": "node functions/vkConfig.js",                  
+    "start:webhookHandler": "node functions/webhookHandler.js",
     "start:index": "node functions/index.js",
     "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
     "start:main": "node functions/main.js",
-    "start:webhookHandler": "node functions/webhookHandler.js",
-    "start:vkConfig": "node functions/vkConfig.js"
+    "start:all": "npm run start:vkConfig && npm run start:webhookHandler && npm run start:index"
   },
   "keywords": [],
   "author": "",
