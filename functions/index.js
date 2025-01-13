@@ -1,3 +1,4 @@
+require('dotenv').config();
 const vk = require('./vkConfig'); // Подключаем VK из конфигурации
 const { Keyboard } = require('vk-io'); //Подключаем клаву
 
