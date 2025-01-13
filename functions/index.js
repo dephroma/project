@@ -1,5 +1,5 @@
 require('dotenv').config();
-const vk = require('./webhookHandler'); // Подключаем VK из конфигурации
+const vk = require('./vkConfig'); // Подключаем VK из конфигурации (А ГДЕ должен быть webhookHandler если не здесь????)
 const { Keyboard } = require('vk-io'); //Подключаем клаву
 
 vk.updates.on('message_new', async (context) => {

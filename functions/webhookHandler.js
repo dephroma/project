@@ -12,7 +12,7 @@ exports.handler = async (event) => {
         };
     }
 
-    // Обработка подтверждения сервера
+    // Обработка подтверждения сервера  --- СЕРВЕР ОТРЫГИВАЕТ КОД ПОДТВЕРЖДЕНИЯ "Сервер вернул неправильный ответ: Invalid response code" ---
     if (type === 'confirmation') {
         return {
             statusCode: 200,
