@@ -32,13 +32,12 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
-
+const handled = await handleText(context, text);
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
 
         // Используем функцию для обработки текста
-        const handled = await handleText(context, text);
         if (handled) return; // Если текст обработан, дальше не продолжаем
 
         const { handleText } = require('./responses');
