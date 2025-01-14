@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
-const { handleText } = require('./responses');
+
 const handled = await handleText(context, text);
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
