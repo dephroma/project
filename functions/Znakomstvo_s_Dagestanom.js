@@ -32,6 +32,7 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
+const { handleText } = require('./responses');
 const handled = await handleText(context, text);
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
@@ -39,8 +40,6 @@ vk.updates.on('message_new', async (context) => {
 
         // Используем функцию для обработки текста
         if (handled) return; // Если текст обработан, дальше не продолжаем
-
-        const { handleText } = require('./responses');
         //Оставил пока что только это, тупо скопировал из index, чтобы наверняка не было ошибок. Кроме триггеров, конечно
     if (['биба', 'хуй', 'горох', 'bye'].includes(text)) {
         await context.send({
