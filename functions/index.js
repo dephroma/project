@@ -1,11 +1,12 @@
 require('dotenv').config();    //запускаемый файл без ошибок, рабочий
 const { VK, Keyboard } = require('vk-io');
-const { handleText } = require('./responses');
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
 
 });
+
+const { handleText } = require('./responses');
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
