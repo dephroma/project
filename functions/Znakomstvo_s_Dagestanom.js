@@ -33,7 +33,6 @@ exports.handler = async (event, context) => {
     };
 };
 
-const handled = await handleText(context, text);
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
