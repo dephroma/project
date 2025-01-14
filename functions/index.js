@@ -1,6 +1,6 @@
 require('dotenv').config();    //запускаемый файл без ошибок, рабочий
 const { VK, Keyboard } = require('vk-io');
-
+const { handleText } = require('./responses');
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
@@ -32,7 +32,6 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
-const { handleText } = require('./responses');
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
