@@ -1,11 +1,9 @@
-require('dotenv').config();    //запускаемый файл без ошибок, рабочий
+require('dotenv').config();
 const { VK, Keyboard } = require('vk-io');
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
 });
-
-const { znakomstvo } = require('./znakomstvo');   // Объявил функцию ?????
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
@@ -36,8 +34,6 @@ exports.handler = async (event, context) => {
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
-
-    const znakom = await znakomstvo(context, text); // Передаем znakomstvo  ???????
 
     if (['привет','начало', 'hi'].includes(text)) {
         await context.send({

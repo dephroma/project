@@ -1,7 +1,7 @@
-//основной файл загрузочный в проекте (указан в netlify.toml) и уже с него перенаправлять на нужного из ботов, в зависимости от слова-триггера, которое пришло на него.
+//Как вариант - основной файл загрузочный в проекте, мб с него перенаправлять на нужного из ботов, в зависимости от слова-триггера, которое пришло на него.
 require('dotenv').config();
 const { VK } = require('vk-io');
-const generalBot = require('./index');
+const index = require('./index');
 const znakomstvo = require('./znakomstvo');
 
 const vk = new VK({
@@ -46,7 +46,7 @@ vk.updates.on('message_new', async (context) => {
         await znakomstvo.handleMessage(context);
     } else if (['привет', 'старт', 'начало', 'hi'].includes(message)) {
         // Передаём сообщение в файл логики общего бота
-        await generalBot.handleMessage(context);
+        await index.handleMessage(context);
     } else {
         // Если сообщение не распознано
         await context.send("Я не понимаю ваш запрос. Пожалуйста, используйте команды.");
