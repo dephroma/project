@@ -2,7 +2,7 @@
 require('dotenv').config();
 const { VK } = require('vk-io');
 const generalBot = require('./index');
-const znakomstvo = require('./Znakomstvo_s_Dagestanom');
+const znakomstvo = require('./znakomstvo');
 
 const vk = new VK({
     token: process.env.VK_TOKEN,

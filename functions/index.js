@@ -5,7 +5,7 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-const { handleText } = require('./responses');
+const { znakomstvo } = require('./znakomstvo');
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
@@ -35,8 +35,10 @@ exports.handler = async (event, context) => {
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
-    const isHandled = await handleText(context, text);
     console.log('Получено сообщение:', text);
+
+    const znakom = await znakomstvo(context, text); // Передаем контекст и текст
+
     if (['привет','начало', 'hi'].includes(text)) {
         await context.send({
             message: "Привет, дорогой путешественник!👋\n\nЯ — ваш виртуальный гид. Помогу вам выбрать идеальный тур, отвечу на вопросы и оформлю заявку.\n\nЧем могу помочь?\n\nВыберите опцию в меню ниже. Или напишите ваш вопрос прямо сюда, и я отвечу! 😊",
