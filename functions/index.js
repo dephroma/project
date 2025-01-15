@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 const { VK, Keyboard } = require('vk-io');
+
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
@@ -114,7 +116,7 @@ vk.updates.on('message_new', async (context) => {
                 "8. Сколько человек будет в группе?\n" +
                 "9. Что брать с собой в поездку?\n" +
                 "10. Как одеваться в Дагестане?\n" +
-                "11. Где можно посмотреть отзывы?\n" +
+            "11. Где можно посмотреть отзывы?\n" +  
                 "12. Как ловит связь?\n" +
                 "13. Расскажите о вашей команде?\n" +
                 "14. Какие условия проживания?\n" +

@@ -5,7 +5,6 @@ const { VK, Keyboard } = require('vk-io');
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
-
 });
 
 exports.handler = async (event, context) => {
@@ -38,7 +37,7 @@ vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
 
-    // Приветственное сообщение
+
     if (['гуга', 'блэд', 'bye'].includes(text)) {
         await context.send({
             message: "Поздравляем вас с выбором экскурсии! 🚀\n\n" +
