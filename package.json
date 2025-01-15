@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "main": "functions/index.js",
   "scripts": {
-    "start:vkConfig": "node functions/vkConfig.js",
-    "start:webhookHandler": "node functions/webhookHandler.js",
     "start:index": "node functions/index.js",
-    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
-    "start:responses": "node functions/responses.js"
+    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"
   },
   "keywords": [],
   "author": "",
