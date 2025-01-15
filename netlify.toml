@@ -4,7 +4,7 @@
 
   [[redirects]]
   from = "/"
-  to = "/.netlify/functions/index"
+  to = "/.netlify/functions/znakomstvo"
   status = 200
 
 
