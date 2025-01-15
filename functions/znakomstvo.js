@@ -99,7 +99,7 @@ vk.updates.on('message_new', async (context) => {
                      "Если у вас есть друзья или знакомые, которые тоже любят путешествия, подумайте о том, чтобы отправиться в поездку вместе. Наша команда всегда готова помочь вам организовать идеальный отдых в хорошей компании!\n\n" +
                      "Так же можем организовать эту поездку в виде частной экскурсии (малая группа), условия обсуждаются индивидуально.",
             keyboard: Keyboard.keyboard([
-                [Keyboard.textButton({ label: '\u{1f4b5} Бронировать', color: Keyboard.POSITIVE_COLOR })],
+                [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime(),
         });
