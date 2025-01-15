@@ -5,7 +5,7 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-    const { handleText } = require('./responses');
+const { handleText } = require('./responses');
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
