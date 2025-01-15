@@ -105,6 +105,18 @@ vk.updates.on('message_new', async (context) => {
         });
     }
 
+
+    else if (text === '\u{21a9} назад') {
+        await context.send({
+            message: "Привет, дорогой путешественник!\n👋 Я — ваш виртуальный гид.\n Чем могу помочь?",
+            keyboard: Keyboard.keyboard([
+                [Keyboard.textButton({ label: '\u{1f4cc} Информация об экскурсии', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
+            ]).oneTime(),
+        });
+    } 
+
     // Обработка неизвестных запросов
     else {
         await context.send({
