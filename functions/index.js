@@ -4,14 +4,9 @@ const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
 });
-    // Вызов handleText
-    const isHandled = await handleText(context, text);
 
-    // Если handleText обработала сообщение, завершаем обработку
-    if (isHandled) {
-        return;
-    }
-    
+    const { handleText } = require('./responses');
+
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
     const { type, group_id, secret } = body;
