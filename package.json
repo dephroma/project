@@ -4,8 +4,7 @@
   "main": "functions/index.js",
   "scripts": {
     "start:index": "node functions/index.js",
-    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js",
-    "start:webhookHandler": "webhookHandler.js"
+    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"
   },
   "keywords": [],
   "author": "",
