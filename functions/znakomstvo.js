@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config();   // Оба файла (index, znakomstvo) проверены, рабочие.....................................................
 
 const { VK, Keyboard } = require('vk-io');
 

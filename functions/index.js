@@ -7,6 +7,9 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
+// 
+//   Реально ли весь код exports вынести в отдельный файл и использовать его тут и в znokomstvo и в остальных частях бота????????????? Y/N  Y/N  Y/N  Y/N  Y/N  
+//
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
     const { type, group_id, secret } = body;
@@ -32,8 +35,8 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
-
-
+// exports     end part
+//  Y/N  Y/N  Y/N  Y/N  ??????
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
