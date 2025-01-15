@@ -5,7 +5,7 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-const { znakomstvo } = require('./znakomstvo');
+const { znakomstvo } = require('./znakomstvo');   // Объявил функцию ?????
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
@@ -37,7 +37,7 @@ vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
     console.log('Получено сообщение:', text);
 
-    const znakom = await znakomstvo(context, text); // Передаем контекст и текст
+    const znakom = await znakomstvo(context, text); // Передаем znakomstvo  ???????
 
     if (['привет','начало', 'hi'].includes(text)) {
         await context.send({
