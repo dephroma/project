@@ -30,9 +30,10 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
-const isHandled = await handleText(context, text);
+
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
+    const isHandled = await handleText(context, text);
     console.log('Получено сообщение:', text);
     if (['привет', 'старт', 'начало', 'hi'].includes(text)) {
         await context.send({
