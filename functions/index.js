@@ -7,9 +7,33 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-const { handler } = require('./webhookHandler');
+exports.handler = async (event, context) => {
+    const body = JSON.parse(event.body);
+    const { type, group_id, secret } = body;
+    
+    if (secret !== process.env.VK_SECRET || group_id !== parseInt(process.env.VK_GROUP_ID, 10)) {
+        return {
+            statusCode: 403,
+            body: 'Forbidden',
+        };
+    }
+    
+    if (type === 'confirmation') {
+        return {
+            statusCode: 200,
+            body: process.env.VK_CONFIRMATION,
+        };
+    }
+    
+    await vk.updates.handleWebhookUpdate(body);
+    
+    return {
+        statusCode: 200,
+        body: 'OK',
+    };
+};
 
-exports.handler = handler;
+
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
@@ -25,7 +49,6 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     } 
-    
 
 
     else if (text === 'Знакомство') {
@@ -36,8 +59,8 @@ vk.updates.on('message_new', async (context) => {
                                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         });
     } 
-
-
+    
+    
     else if (text === '\u{1f4da} каталог и бронирование') {
         await context.send({
             message: "Ознакомьтесь с нашим каталогом туров. У нас есть:\n\n🌟 Экскурсии на 1 день — отличная возможность подарить себе яркие впечатления и познакомиться с республикой за один день.\n✨ Многодневные туры — для тех, кто хочет отдохнуть душой, насладиться природой и открыть для себя весь колорит региона.\n\nВыберите подходящий маршрут и нажмите «Забронировать» на карточке товара. После этого я помогу оформить заявку!",
@@ -142,7 +165,7 @@ vk.updates.on('message_new', async (context) => {
     else if (context.text.toLowerCase() === 'карусель') {
         // Первый элемент
         await context.send({
-            attachment: 'https://vk.com/photo-28295020_457239221', 
+            attachment: 'https://vk.com/photo-28295020_457239221', // Замените на ваш photo_id
             message: "🌟 Первый элемент:\nОписание первого элемент.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Подробнее', url: 'https://example.com' })],
@@ -150,11 +173,11 @@ vk.updates.on('message_new', async (context) => {
             ]).oneTime(),
         });
     
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        await new Promise((resolve) => setTimeout(resolve, 1500)); // Пауза для имитации последовательности
     
         // Второй элемент
         await context.send({
-            attachment: 'photo-28295020_457239323',
+            attachment: 'photo-28295020_457239323', // Замените на ваш photo_id
             message: "✨ Второй элемент:\nОписание второго элемента.",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: 'Перейти', url: 'https://another-example.com' })],
@@ -165,6 +188,8 @@ vk.updates.on('message_new', async (context) => {
     
 
    
+
+    
     else {
         await context.send('Я не понимаю ваш запрос. Пожалуйста, используйте кнопки меню или дождитесь ответа администратора.');
     }
