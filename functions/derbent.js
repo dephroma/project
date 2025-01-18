@@ -169,9 +169,9 @@ vk.updates.on('message_new', async (context) => {
             "Вся необходимая информация по вашей экскурсии содержится в статье, которую мы подготовили специально для вас. В ней вы найдете подробности о маршруте, условиях, программе и других важных аспектах.\n\n" +
             "Пожалуйста, ознакомьтесь с материалами. Если у вас возникнут вопросы или потребуется дополнительная информация, не стесняйтесь обращаться к нам. Мы всегда готовы помочь!",
             Keyboard.keyboard([
-                [Keyboard.textButton({ label: ({
+                [Keyboard.urlButton({ label: ({
                     label: '👉Программа экскурсии📃',
-                    url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
+                    url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
                 }) })],
                 [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
@@ -259,7 +259,7 @@ vk.updates.on('message_new', async (context) => {
             info: Keyboard.keyboard([
                 [Keyboard.urlButton({ label: ({
                     label: '👉Программа экскурсии📃',
-                    url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
+                    url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
                 }) })],
                 [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
