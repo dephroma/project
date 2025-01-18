@@ -1,12 +1,12 @@
 require('dotenv').config();
 
 const { VK, Keyboard } = require('vk-io');
+import { greetingHandler } from './znakomstvo';
 
 const vk = new VK({
     token: process.env.VK_TOKEN,
     webhookSecret: process.env.VK_SECRET,
 });
-
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
             body: 'Forbidden',
         };
     }
-    
+
     if (type === 'confirmation') {
         return {
             statusCode: 200,
@@ -33,6 +33,7 @@ exports.handler = async (event, context) => {
         body: 'OK',
     };
 };
+
 
 vk.updates.on('message_new', async (context) => {
     const text = context.text.trim().toLowerCase();
@@ -53,6 +54,15 @@ vk.updates.on('message_new', async (context) => {
     else if (text === 'Знакомство') {
         await context.send({ 
         });
+
+      //  await context.send({    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                // !!!!!!!!!!!!!!!!!       ВОТ ТУТ НУЖЕН ПЕРЕХОД НА znakomstvo.js           !!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     //   });
+        greetingHandler(text, context);
+
     } 
     
     
