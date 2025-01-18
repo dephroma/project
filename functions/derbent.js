@@ -254,11 +254,11 @@ vk.updates.on('message_new', async (context) => {
             payment: Keyboard.keyboard([
                 [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
-            ]).oneTime()
+            ]).oneTime(),
             info: Keyboard.keyboard([
                 [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
-            ]).oneTime()
+            ]).oneTime(),
             faq: Keyboard.keyboard([
                 [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
