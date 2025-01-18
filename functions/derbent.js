@@ -94,7 +94,7 @@ vk.updates.on('message_new', async (context) => {
             Keyboard.keyboard([
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
                 [Keyboard.textButton({ label: '\u{1f4c5} Меню', color: Keyboard.PRIMARY_COLOR })],
-                [Keyboard.textButton({ label: '\u{1f4ac} Частые вопросы FAQ', color: Keyboard.NEGATIVE_COLOR })],
+                [Keyboard.textButton({ label: '\u{1f4ac} Часто задаваемые вопросы', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         );
     }
@@ -127,7 +127,7 @@ vk.updates.on('message_new', async (context) => {
     }
 
     //Частые вопросы FAQ
-    if (text === '\u{1f4ac} частые вопросы') {
+    if (text === '\u{1f4ac} Часто задаваемые вопросы') {
         return navigateTo('faq'+"\u{1f4ac} Часто задаваемые вопросы:\n\n" +
                 "1. Где найти полную программу тура?\n" +
                 "Зайдите в раздел «Статьи», там вы найдёте полные программы всех туров.\n\n" +
@@ -254,7 +254,7 @@ vk.updates.on('message_new', async (context) => {
         booking: Keyboard.keyboard([
             [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             [Keyboard.textButton({ label: '\u{1f4c5} Меню', color: Keyboard.PRIMARY_COLOR })],
-            [Keyboard.textButton({ label: '\u{1f4ac} Частые вопросы FAQ', color: Keyboard.NEGATIVE_COLOR })],
+            [Keyboard.textButton({ label: '\u{1f4ac} Часто задаваемые вопросы', color: Keyboard.NEGATIVE_COLOR })],
         ]).oneTime(),
         payment: Keyboard.keyboard([
             [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
