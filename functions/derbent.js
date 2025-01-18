@@ -7,7 +7,7 @@ const vk = new VK({
     webhookSecret: process.env.VK_SECRET,
 });
 
-//const userState = new Map(); // Хранилище состояния пользователей
+const userState = new Map(); // Хранилище состояния пользователей
 
 exports.handler = async (event, context) => {
     const body = JSON.parse(event.body);
