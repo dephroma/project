@@ -4,7 +4,8 @@
   "main": "functions/index.js",
   "scripts": {
     "start:index": "node functions/index.js",
-    "start:znakomstvo": "node functions/Znakomstvo_s_Dagestanom.js"
+    "start:znakomstvo": "node functions/znakomstvo.js",
+    "start:derbent": "node functions/derbent.js"
   },
   "keywords": [],
   "author": "",
