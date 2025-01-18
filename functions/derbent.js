@@ -172,7 +172,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: ({
                     label: '👉Программа экскурсии📃',
                     url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
-                    color: Keyboard.PRIMARY_COLOR
                 }) })],
                 [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
@@ -261,7 +260,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: ({
                     label: '👉Программа экскурсии📃',
                     url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
-                    color: Keyboard.PRIMARY_COLOR
                 }) })],
                 [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
