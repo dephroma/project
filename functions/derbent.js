@@ -257,7 +257,7 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime(),
             info: Keyboard.keyboard([
-                [Keyboard.textButton({ label: ({
+                [Keyboard.urlButton({ label: ({
                     label: '👉Программа экскурсии📃',
                     url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
                 }) })],
