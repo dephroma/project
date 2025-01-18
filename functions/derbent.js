@@ -261,7 +261,7 @@ vk.updates.on('message_new', async (context) => {
                     label: '👉Программа экскурсии📃',
                     url: 'https://vk.com/@dageagletour-programma-tura-drevnii-derbent',
                 }) })],
-                [Keyboard.textButton({ label: '\u{1f4b5} Забронировать', color: Keyboard.POSITIVE_COLOR })],
+                [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime(),
             faq: Keyboard.keyboard([
