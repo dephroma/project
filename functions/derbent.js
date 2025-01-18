@@ -282,7 +282,7 @@ vk.updates.on('message_new', async (context) => {
 
     // Если не распознали текст
     return context.send({
-        message: "Спасибо, ваша информация учтена. Вы вернулись в меню, если вы не закончили бронирование, выберите вариант ответа по кнопкам ниже или дождитесь ответа администратора.",
+        message: "Спасибо, вашаа информация учтена. Вы вернулись в меню, если вы не закончили бронирование, выберите вариант ответа по кнопкам ниже или дождитесь ответа администратора.",
         keyboard: Keyboard.keyboard([
             [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
             [Keyboard.textButton({ label: '\u{1f4cc} Информация об экскурсии', color: Keyboard.PRIMARY_COLOR })],
