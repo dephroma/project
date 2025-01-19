@@ -4,7 +4,7 @@
 
   [[redirects]]
   from = "/"
-  to = "/.netlify/src/types/index.ts"
+  to = "/.netlify/src/types/index"
   status = 200
 
 
