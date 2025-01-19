@@ -110,6 +110,8 @@ export const greetingHandler = async (gotText, context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime(),
         });
+
+        
     }
 
 
