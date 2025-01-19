@@ -147,7 +147,7 @@ vk.updates.on('message_new', async (context) => {
     // Информация об экскурсии
     else if (text === '\u{1f4cc} информация об экскурсии') {
         await context.send({
-            message: "Вся информация по экскурсии представлена в специальной статье. Здесь вы найдете детали маршрута, программу и важные нюансы.\n\n" +
+            message: "Вся информация об экскурсии представлена в специальной статье. Здесь вы найдете детали маршрута, программу и важные нюансы.\n\n" +
                      "Пожалуйста, ознакомьтесь с материалами. Если появятся вопросы, мы всегда на связи!",
             keyboard: Keyboard.keyboard([
                 [Keyboard.urlButton({
@@ -155,7 +155,8 @@ vk.updates.on('message_new', async (context) => {
                     url: 'https://vk.com/market/product/drevniy-derbent-ves-derbent-fontany-lun-28295020-9863669',
                 })],
                 [Keyboard.textButton({ label: '\u{1f4b5} Условия оплаты и бронирование', color: Keyboard.POSITIVE_COLOR })],
-                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{1f4ac} Часто задаваемые вопросы', color: Keyboard.PRIMARY_COLOR })],
+                [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
         return responseText;
