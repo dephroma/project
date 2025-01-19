@@ -4,7 +4,7 @@
 
   [[redirects]]
   from = "/"
-  to = "/.netlify/functions/derbent"
+  to = "/.netlify/src/types/index.ts"
   status = 200
 
 
