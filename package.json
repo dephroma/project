@@ -14,6 +14,7 @@
   "description": "",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "@types/node": "^16.4.6",
     "dotenv": "^16.4.7",
     "env-var": "^7.5.0",
     "express": "^4.19.2",
