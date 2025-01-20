@@ -47,7 +47,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{1f5d3} Даты экскурсий', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Даты экскурсий
@@ -64,7 +63,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Бронирование
@@ -83,7 +81,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{1f4ac} Часто задаваемые вопросы', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Условия оплаты и бронирование
@@ -111,7 +108,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Часто задаваемые вопросы FAQ
@@ -142,7 +138,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.SECONDARY_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Информация об экскурсии
@@ -160,7 +155,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{21a9} Назад', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
 
     //Логика кнопки НАЗАД
@@ -175,7 +169,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{1f5d3} Даты экскурсий', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
     // Если не распознали текст
@@ -190,7 +183,6 @@ vk.updates.on('message_new', async (context) => {
                 [Keyboard.textButton({ label: '\u{1f5d3} Даты экскурсий', color: Keyboard.NEGATIVE_COLOR })],
             ]).oneTime()
         });
-        return responseText;
     }
     
 });
